@@ -1,12 +1,18 @@
 package br.com.vr.autorizador.exception;
 
-public class CartaoException extends Exception {
+public class CartaoException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * 
+	 */
+	public CartaoException() {
+	}
+	
 	/**
 	 * @param message
 	 * @param cause
@@ -31,6 +37,5 @@ public class CartaoException extends Exception {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 }

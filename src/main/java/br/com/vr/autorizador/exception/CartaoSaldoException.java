@@ -1,12 +1,15 @@
 package br.com.vr.autorizador.exception;
 
-public class CartaoSaldoException extends RuntimeException {
+public class CartaoSaldoException extends CartaoException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	public CartaoSaldoException() {
 	}
 

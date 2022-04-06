@@ -1,14 +1,19 @@
 package br.com.vr.autorizador.exception;
 
-public class CartaoSenhaException extends RuntimeException {
+public class CartaoSenhaException extends CartaoException {
+	
+	
+	
+	/**
+	 * 
+	 */
+	public CartaoSenhaException() {
+	}
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public CartaoSenhaException() {
-	}
 
 	/**
 	 * @param message
