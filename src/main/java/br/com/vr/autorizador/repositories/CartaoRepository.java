@@ -1,5 +1,9 @@
 package br.com.vr.autorizador.repositories;
 
-public class CartaoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.vr.autorizador.entities.Cartao;
+
+public interface CartaoRepository extends JpaRepository<Cartao, String>{
 
 }

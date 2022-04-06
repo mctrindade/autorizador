@@ -19,21 +19,25 @@ import br.com.vr.autorizador.dto.TransacaoDTO;
 import br.com.vr.autorizador.exception.CartaoException;
 import br.com.vr.autorizador.exception.CartaoExistenteException;
 import br.com.vr.autorizador.services.CartaoService;
+import br.com.vr.autorizador.services.TransacaoService;
 
 @RestController
-@RequestMapping("/cartoes")
+@RequestMapping(value = "/cartoes")
 public class CartaoController {
 	
 	@Autowired
 	private CartaoService cartaoService;
 	
+	@Autowired
+	private TransacaoService transacaoService;
+	
 	@PostMapping
 	public ResponseEntity<CartaoDTO> create(@RequestBody @Validated CartaoDTO cartaoDto) {
 		try {
 			cartaoService.create(cartaoDto);
-			return ResponseEntity.ok(new CartaoDTO());
+			return ResponseEntity.ok(cartaoDto);
 		} catch (CartaoExistenteException e) {
-			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+			throw new ResponseStatusException(e.getCodStatus(), e.getBody().toString(), e);
 		}
 	}
 	
@@ -50,7 +54,7 @@ public class CartaoController {
 	@PostMapping("transacoes")
 	public ResponseEntity<String> transaction (@RequestBody TransacaoDTO transacaoDto){
 		try {
-			cartaoService.realizarTransacao(transacaoDto);
+			transacaoService.realizarTransacao(transacaoDto);
 			return ResponseEntity.ok("Ok");
 		} catch (CartaoException e) {
 			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());

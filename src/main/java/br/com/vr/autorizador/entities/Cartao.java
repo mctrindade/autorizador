@@ -5,12 +5,9 @@ package br.com.vr.autorizador.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -31,8 +28,8 @@ public class Cartao implements Serializable {
 	private String senha;
 	private BigDecimal saldo;
 	
-	@OneToMany(mappedBy = "cartao", fetch = FetchType.LAZY)
-	private Set<Transacao> transacoes;
+	/*@OneToMany(mappedBy = "cartao", fetch = FetchType.LAZY)
+	private Set<Transacao> transacoes;*/
 	
 	public Cartao() {
 	}
@@ -95,14 +92,14 @@ public class Cartao implements Serializable {
 	/**
 	 * @return the transacoes
 	 */
-	public Set<Transacao> getTransacoes() {
+	/*public Set<Transacao> getTransacoes() {
 		return transacoes;
-	}
+	}*/
 
 	/**
 	 * @param transacoes the transacoes to set
 	 */
-	public void setTransacoes(Set<Transacao> transacoes) {
+	/*public void setTransacoes(Set<Transacao> transacoes) {
 		this.transacoes = transacoes;
-	}
+	}*/
 }

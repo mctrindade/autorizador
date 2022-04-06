@@ -1,16 +1,26 @@
 package br.com.vr.autorizador.exception;
 
-public class CartaoExistenteException extends CartaoException {
+import br.com.vr.autorizador.dto.CartaoDTO;
 
+public class CartaoExistenteException extends CartaoException {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * 
 	 */
 	public CartaoExistenteException() {
+	}
+	
+	public CartaoExistenteException(Integer codStatus) {
+		super(codStatus, null);
+	}
+	
+	public CartaoExistenteException(Integer codStatus, CartaoDTO cartaoDto) {
+		super(codStatus, cartaoDto);
 	}
 
 	/**
@@ -34,6 +44,9 @@ public class CartaoExistenteException extends CartaoException {
 	public CartaoExistenteException(Throwable cause) {
 		super(cause);
 	}
+
+
+	
 
 
 }
