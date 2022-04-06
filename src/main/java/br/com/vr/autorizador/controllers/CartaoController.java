@@ -18,7 +18,7 @@ import br.com.vr.autorizador.dto.CartaoDTO;
 import br.com.vr.autorizador.dto.TransacaoDTO;
 import br.com.vr.autorizador.exception.CartaoException;
 import br.com.vr.autorizador.exception.CartaoExistenteException;
-import br.com.vr.autorizador.service.CartaoService;
+import br.com.vr.autorizador.services.CartaoService;
 
 @RestController
 @RequestMapping("/cartoes")

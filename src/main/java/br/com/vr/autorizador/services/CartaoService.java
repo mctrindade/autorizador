@@ -1,4 +1,4 @@
-package br.com.vr.autorizador.service;
+package br.com.vr.autorizador.services;
 
 import java.math.BigDecimal;
 
