@@ -1,5 +1,10 @@
 package br.com.vr.autorizador.exception;
 
+import java.util.Optional;
+
+import lombok.Getter;
+import lombok.Setter;
+
 public class CartaoException extends RuntimeException {
 	
 	/**
@@ -7,23 +12,14 @@ public class CartaoException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer codStatus;
-	
-	private Object body;
+	@Setter
+	@Getter
+	private Optional<Object> body = Optional.empty();
 	
 	/**
 	 * 
 	 */
 	public CartaoException() {
-	}
-	
-	/**
-	 * @param codStatus
-	 * @param body
-	 */
-	public CartaoException(Integer codStatus, Object body) {
-		this.codStatus = codStatus;
-		this.body = body;
 	}
 	
 	/**
@@ -49,33 +45,5 @@ public class CartaoException extends RuntimeException {
 	public CartaoException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @return the codStatus
-	 */
-	public Integer getCodStatus() {
-		return codStatus;
-	}
-
-	/**
-	 * @param codStatus the codStatus to set
-	 */
-	public void setCodStatus(Integer codStatus) {
-		this.codStatus = codStatus;
-	}
-
-	/**
-	 * @return the body
-	 */
-	public Object getBody() {
-		return body;
-	}
-
-	/**
-	 * @param body the body to set
-	 */
-	public void setBody(Object body) {
-		this.body = body;
 	}
 }

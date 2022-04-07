@@ -2,7 +2,7 @@ package br.com.vr.autorizador.exception;
 
 import java.util.Optional;
 
-public class CartaoExistenteException extends CartaoException {
+public class CartaoSenhaInvalidaException extends CartaoException {
 	
 	/**
 	 * 
@@ -12,10 +12,13 @@ public class CartaoExistenteException extends CartaoException {
 	/**
 	 * 
 	 */
-	public CartaoExistenteException() {
+	public CartaoSenhaInvalidaException() {
 	}
 	
-	public CartaoExistenteException(Object body) {
+	/**
+	 * @param body
+	 */
+	public CartaoSenhaInvalidaException(Object body) {
 		setBody(Optional.of(body));
 	}
 
@@ -23,19 +26,15 @@ public class CartaoExistenteException extends CartaoException {
 	 * @param message
 	 * @param cause
 	 */
-	public CartaoExistenteException(String message, Throwable cause) {
+	public CartaoSenhaInvalidaException(String message, Throwable cause) {
 		super(message, cause);
 	}
+
 
 	/**
 	 * @param cause
 	 */
-	public CartaoExistenteException(Throwable cause) {
+	public CartaoSenhaInvalidaException(Throwable cause) {
 		super(cause);
 	}
-
-
-	
-
-
 }

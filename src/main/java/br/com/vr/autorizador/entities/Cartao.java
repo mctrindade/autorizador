@@ -10,10 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author Marcos.Diniz
  *
  */
+
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_cartao")
 public class Cartao implements Serializable {
@@ -28,9 +34,6 @@ public class Cartao implements Serializable {
 	private String senha;
 	private BigDecimal saldo;
 	
-	/*@OneToMany(mappedBy = "cartao", fetch = FetchType.LAZY)
-	private Set<Transacao> transacoes;*/
-	
 	public Cartao() {
 	}
 	
@@ -41,65 +44,13 @@ public class Cartao implements Serializable {
 	 * @param transacoes
 	 */
 	public Cartao(String numeroCartao, String senha, BigDecimal saldo) {
-		super();
 		this.numeroCartao = numeroCartao;
 		this.senha = senha;
 		this.saldo = saldo;
 	}
 
-	/**
-	 * @return the numeroCartao
-	 */
-	public String getNumeroCartao() {
-		return numeroCartao;
-	}
-
-	/**
-	 * @param numeroCartao the numeroCartao to set
-	 */
-	public void setNumeroCartao(String numeroCartao) {
+	public Cartao(String numeroCartao, String senhaCartao) {
 		this.numeroCartao = numeroCartao;
+		this.senha = senhaCartao;
 	}
-
-	/**
-	 * @return the senha
-	 */
-	public String getSenha() {
-		return senha;
-	}
-
-	/**
-	 * @param senha the senha to set
-	 */
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	/**
-	 * @return the saldo
-	 */
-	public BigDecimal getSaldo() {
-		return saldo;
-	}
-
-	/**
-	 * @param saldo the saldo to set
-	 */
-	public void setSaldo(BigDecimal saldo) {
-		this.saldo = saldo;
-	}
-
-	/**
-	 * @return the transacoes
-	 */
-	/*public Set<Transacao> getTransacoes() {
-		return transacoes;
-	}*/
-
-	/**
-	 * @param transacoes the transacoes to set
-	 */
-	/*public void setTransacoes(Set<Transacao> transacoes) {
-		this.transacoes = transacoes;
-	}*/
 }

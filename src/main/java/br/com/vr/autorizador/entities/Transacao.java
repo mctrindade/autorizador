@@ -11,6 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_transacao")
 public class Transacao implements Serializable {
@@ -43,31 +48,4 @@ public class Transacao implements Serializable {
 		this.cartao = cartao;
 		this.valorDebito = valorDebito;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Cartao getCartao() {
-		return cartao;
-	}
-
-	public void setCartao(Cartao cartao) {
-		this.cartao = cartao;
-	}
-
-	public BigDecimal getValorDebito() {
-		return valorDebito;
-	}
-
-	public void setValorDebito(BigDecimal valorDebito) {
-		this.valorDebito = valorDebito;
-	}
-	
-	
-
 }

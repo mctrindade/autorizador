@@ -2,24 +2,23 @@ package br.com.vr.autorizador.exception;
 
 import java.util.Optional;
 
-public class CartaoSaldoException extends CartaoException {
-
+public class CartaoInexistenteSaldoException extends CartaoException {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * 
 	 */
-	public CartaoSaldoException() {
+	public CartaoInexistenteSaldoException() {
 	}
-	
 	
 	/**
 	 * @param body
 	 */
-	public CartaoSaldoException(Object body) {
+	public CartaoInexistenteSaldoException(Object body) {
 		setBody(Optional.of(body));
 	}
 	
@@ -27,15 +26,19 @@ public class CartaoSaldoException extends CartaoException {
 	 * @param message
 	 * @param cause
 	 */
-	public CartaoSaldoException(String message, Throwable cause) {
+	public CartaoInexistenteSaldoException(String message, Throwable cause) {
 		super(message, cause);
 	}
-
 
 	/**
 	 * @param cause
 	 */
-	public CartaoSaldoException(Throwable cause) {
+	public CartaoInexistenteSaldoException(Throwable cause) {
 		super(cause);
 	}
+
+
+	
+
+
 }
