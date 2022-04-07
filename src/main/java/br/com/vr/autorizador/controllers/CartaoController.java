@@ -39,7 +39,7 @@ public class CartaoController {
 	@ApiOperation(value = "Recupera o saldo disponivel do cartão")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Obtenção com sucesso"),
 			@ApiResponse(code = 404, message = "Caso o cartão já exista") })
-	@GetMapping(path = "{numeroCartao}", produces = "application/json", consumes = "application/json")
+	@GetMapping("{numeroCartao}")
 	public ResponseEntity<BigDecimal> getSaldo(@PathVariable String numeroCartao) {
 		BigDecimal saldo = cartaoService.getSaldo(numeroCartao);
 		return ResponseEntity.ok(saldo);
