@@ -32,7 +32,7 @@ public class TransacaoService {
 	 * @return
 	 * @throws CartaoException
 	 */
-	@Transactional(propagation=Propagation.REQUIRED, readOnly = false, isolation = Isolation.SERIALIZABLE)
+	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly = false, isolation = Isolation.SERIALIZABLE)
 	public Transacao realizarTransacao(TransacaoDTO transacaoDto) throws CartaoException {
 
 		Cartao cartao = cartaoService.validarCartao(transacaoDto.getNumeroCartao(), transacaoDto.getSenhaCartao());
