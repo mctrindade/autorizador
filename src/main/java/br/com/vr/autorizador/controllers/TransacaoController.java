@@ -1,6 +1,7 @@
 package br.com.vr.autorizador.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,6 @@ public class TransacaoController {
 	@PostMapping(produces="application/json", consumes="application/json" )
 	public ResponseEntity<String> transaction (@RequestBody TransacaoDTO transacaoDto){
 		transacaoService.realizarTransacao(transacaoDto);
-		return ResponseEntity.ok("Ok");
+		return ResponseEntity.status(HttpStatus.CREATED).body("Ok");
 	}
 }

@@ -25,11 +25,13 @@ public class TransacaoService {
 	
 	
 	/**
+	 * Metodo responsavel por realizar a transação
 	 * @param transacaoDto
+	 * @return
 	 * @throws CartaoException
 	 */
 	@Transactional
-	public void realizarTransacao(TransacaoDTO transacaoDto) throws CartaoException {
+	public Transacao realizarTransacao(TransacaoDTO transacaoDto) throws CartaoException {
 
 		Cartao cartao = cartaoService.validarCartao(transacaoDto.getNumeroCartao(), transacaoDto.getSenhaCartao());
 		
@@ -39,10 +41,17 @@ public class TransacaoService {
 		cartaoService.manterCartao(cartao);
 		
 		Transacao transacao = transacaoDto.fromDTO();
-		transacaoRepository.save(transacao);
+		
+		return transacaoRepository.save(transacao);
 	}
 
 
+	/**
+	 * Metodo responsavel por validar e calcular o saldo
+	 * @param transacaoDto
+	 * @param cartao
+	 * @return
+	 */
 	private BigDecimal validarSaldoDisponivel(TransacaoDTO transacaoDto, Cartao cartao) {
 		Optional<BigDecimal> saldoDisponivelOp = Optional.ofNullable(cartao.getSaldo().subtract(transacaoDto.getValor()));
 		

@@ -57,19 +57,22 @@ public class CartaoService {
 	}
 
 	/**
+	 * Metodo responsavel por realizar as validações no cartão (senha e se existe o cartao)
 	 * @param numeroCartao
 	 * @param senhaCartao
 	 * @return
 	 */
 	public Cartao validarCartao(String numeroCartao, String senhaCartao) {
-		//realiza consutla se cartão já existe
+		//realiza consutla do cartão
 		Optional<Cartao> cartaoOp= findByNumeroCartao(numeroCartao);
+		//valida se o cartão ja existe
 		cartaoOp.orElseThrow(() -> new CartaoInexistenteException("CARTAO_INEXISTENTE"));
 		//valida se senha é igual
 		return cartaoOp.filter(s -> s.getSenha().equals(senhaCartao)).orElseThrow(() -> new CartaoSenhaInvalidaException("SENHA_INVALIDA"));
 	}
 
 	/**
+	 * Metodo responsavel por manter o cartao 
 	 * @param cartao
 	 * @return
 	 */
