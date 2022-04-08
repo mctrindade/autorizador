@@ -23,6 +23,8 @@ Este projeto utiliza as seguintes tecnologias:
 
 - MySQL
 
+- Springfox Swagger
+
 
 ## Configurações para manipular o projeto com o Lombok
 
