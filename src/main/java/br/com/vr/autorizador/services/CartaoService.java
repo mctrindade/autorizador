@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.vr.autorizador.dto.CartaoDTO;
@@ -25,7 +26,7 @@ public class CartaoService {
 	 * Metodo responsavel por criar o cartão
 	 * @param cartaoDto
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.REQUIRED, readOnly = false)
 	public CartaoDTO create(CartaoDTO cartaoDto) {
 		// realiza validacao se cartão já existe
 		cartaoRepository.findById(cartaoDto.getNumeroCartao()).ifPresent(s -> {
@@ -42,19 +43,12 @@ public class CartaoService {
 	 * @param numeroCartao
 	 * @return saldo
 	 */
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public BigDecimal getSaldo(String numeroCartao) {
 		// realiza consulta do saldo do cartão, caso não exista é lançada uma excessao
 		return findByNumeroCartao(numeroCartao).orElseThrow(() -> new CartaoInexistenteSaldoException()).getSaldo();
 	}
 	
-	/**
-	 * Metodo responsavel por recuperar o cartao pelo numero do cartao
-	 * @param numeroCartao
-	 * @return
-	 */
-	public Optional<Cartao> findByNumeroCartao(String numeroCartao) {
-		return cartaoRepository.findById(numeroCartao);
-	}
 
 	/**
 	 * Metodo responsavel por realizar as validações no cartão (senha e se existe o cartao)
@@ -62,6 +56,7 @@ public class CartaoService {
 	 * @param senhaCartao
 	 * @return
 	 */
+	@Transactional(readOnly = true)
 	public Cartao validarCartao(String numeroCartao, String senhaCartao) {
 		//realiza consutla do cartão
 		Optional<Cartao> cartaoOp= findByNumeroCartao(numeroCartao);
@@ -76,8 +71,18 @@ public class CartaoService {
 	 * @param cartao
 	 * @return
 	 */
+	@Transactional(propagation=Propagation.REQUIRED, readOnly = false)
 	public Cartao manterCartao(Cartao cartao) {
 		return cartaoRepository.save(cartao);
+	}
+	
+	/**
+	 * Metodo responsavel por recuperar o cartao pelo numero do cartao
+	 * @param numeroCartao
+	 * @return
+	 */
+	private Optional<Cartao> findByNumeroCartao(String numeroCartao) {
+		return cartaoRepository.findById(numeroCartao);
 	}
 
 }

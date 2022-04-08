@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.vr.autorizador.dto.TransacaoDTO;
@@ -30,7 +32,7 @@ public class TransacaoService {
 	 * @return
 	 * @throws CartaoException
 	 */
-	@Transactional
+	@Transactional(propagation=Propagation.REQUIRED, readOnly = false, isolation = Isolation.SERIALIZABLE)
 	public Transacao realizarTransacao(TransacaoDTO transacaoDto) throws CartaoException {
 
 		Cartao cartao = cartaoService.validarCartao(transacaoDto.getNumeroCartao(), transacaoDto.getSenhaCartao());
